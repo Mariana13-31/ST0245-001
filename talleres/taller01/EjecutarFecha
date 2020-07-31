@@ -1,0 +1,27 @@
+import java.util.Calendar;
+/**
+ * Write a description of class ejecutarfecha here.
+ * 
+ * @author (your name) 
+ * @version (a version number or a date)
+ */
+public class ejecutarfecha
+{
+    public static void main(String[] args) {
+        Calendar c = Calendar.getInstance();
+        Fecha f1 = new Fecha(c.get(Calendar.DATE), c.get(Calendar.MONTH), c.get(Calendar.YEAR));
+        Fecha f2 = new Fecha(1, 8, 2017);
+        Fecha f3 = new Fecha(5, 3, 2013);
+        System.out.println("Fecha 1: " + f1.toString());
+        System.out.println("Fecha 2: " + f2.toString());
+        System.out.println("Fecha 3: " + f3.toString());
+        
+        System.out.println("Interpretación de la comparación: \n-1 si la"+
+                        "primera fecha es anterior a la segunda fecha.\n 0"+
+                        "si son iguales.\n1 si la primera fecha es posterior"+
+                        "a la segunda fecha.\nComparación de Fecha 1 y 2: "+
+                        " + f1.comparar(f2) \nComparación de Fecha 1 y 3:"+
+                        " + f1.comparar(f3)");
+        
+    }
+}
