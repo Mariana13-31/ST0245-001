@@ -1,0 +1,132 @@
+import java.util.Calendar;
+/**
+ * Write a description of class Fecha here.
+ * 
+ * @author (your name) 
+ * @version (a version number or a date)
+ */
+public class Fecha
+{
+    private final int dia;
+    private final int mes;
+    private final int anyo;
+
+
+    /**
+     * Se inicializan las variables globales en el constructor de manera que
+     * no posean valores nulos o 0s.
+     */
+    public Fecha() {
+        //una nueva fecha se inicializa con los datos de la fecha actual del sistema
+        
+        Calendar c = Calendar.getInstance();
+        this.dia = c.get(Calendar.DATE);
+        this.mes = c.get(Calendar.MONTH);
+        this.anyo = c.get(Calendar.YEAR);
+        
+    }
+    
+    public Fecha(int dia, int mes, int anyo){
+        this.dia = dia;
+        this.mes = mes;
+        this.anyo = anyo;
+        
+    }
+    
+    /**
+     * Método para obtener la variable global dia.
+     *
+     * @return el dia
+     */
+    public int dia() {
+        return this.dia;
+    }
+
+    /**
+     * Método para obtener la variable global mes.
+     *
+     * @return el mes
+     */
+    public int mes() {
+        return this.mes;
+    }
+
+    /**
+     * Método para obtener la variable global anio.
+     *
+     * @return el año
+     */
+    public int anyo() {
+        return this.anyo;
+    }
+
+    /**
+    * @param otra representa la fecha con la cual se va a comparar.
+    *
+    * El método comprar se encarga de devolvernos respuesta a tres posibilidades.
+    * 1: si la fecha es menor que la otra retorna -1.
+    * 2: si la fecha es igual que la otra retorna 0.
+    * 3: si la fecha es mayor que la otra retorna 1.
+    *
+    * @return -1 sí es menor; 0 sí es igual; 1 sí es mayor.
+    *
+    */
+
+    public int comparar(Fecha otra) {
+        int retorno = 0;
+        
+        //evaluar el anyo
+        if(this.anyo > otra.anyo()){
+            retorno = 1;
+        }
+        else if(this.anyo == otra.anyo()){
+            retorno = 0;
+        }
+        else if(this.anyo < otra.anyo()){
+            retorno = -1;
+        }
+        
+        if(retorno != 0){
+            return retorno;
+        }
+        
+        //evaluar mes
+        if(this.mes > otra.mes()){
+            retorno = 1;
+        }
+        else if(this.mes == otra.mes()){
+            retorno = 0;
+        }
+        else if(this.mes < otra.mes()){
+            retorno = -1;
+        }
+        
+        if(retorno != 0){
+            return retorno;
+        }
+        
+        //evaluar dia
+        if(this.dia > otra.dia()){
+            retorno = 1;
+        }
+        else if(this.dia == otra.dia()){
+            retorno = 0;
+        }
+        else if(this.dia < otra.dia()){
+            retorno = -1;
+        }
+        
+        return retorno;
+    }
+
+
+    /**
+    * toString se encargará de convertir el tipo abstracto fecha en un tipo cadena
+    * para su posterior visualización
+    *
+    * @return una cadena que contiene la fecha
+    */
+    public String toString() {
+        return "$this.dia/$this.mes/$this.anyo";
+    }
+}
