@@ -1,0 +1,19 @@
+public class MaximoComunDivisor
+{
+    public int mcd(int a, int b){
+        
+        if(b == 0){
+            return a;
+        }
+        
+        int r = a % b;
+        
+        if(r == 0){
+            return b;
+        }
+        else{
+            return mcd(b,r);
+        }
+        
+    }
+}
