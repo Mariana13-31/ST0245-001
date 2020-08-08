@@ -1,0 +1,17 @@
+public static void main(String []args){
+       int a, b;
+       Scanner variables = new Scanner(System.in);
+       System.out.print("Introduzca primer número: ");
+       a = variables.nextInt();
+       System.out.print("Introduzca segundo número: ");
+       b = variables.nextInt();
+       
+       if(a < b){
+           System.out.println("Error, a debe ser mayor que b");
+       }
+       else{
+           MaximoComunDivisor x = new MaximoComunDivisor();
+           x.mcd(a,b);
+       }
+   }
+}
