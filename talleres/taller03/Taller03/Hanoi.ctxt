@@ -1,0 +1,8 @@
+#BlueJ class context
+comment0.target=Hanoi
+comment0.text=\r\n\ Write\ a\ description\ of\ class\ TorresHanoi\ here.\r\n\ \r\n\ @author\ (your\ name)\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n\ La\ f\u00F3rmula\ para\ encontrar\ el\ n\u00FAmero\ de\ movimientos\r\n\ necesarios\ para\ transferir\ n\ discos\ desde\ un\ poste\ a\ otro\ es\:\ 2n\ -\ 1.\r\n\ Se\ llevan\ n-1\ discos\ de\ la\ varilla\ origen\ a\ la\ auxiliar.\r\n\ Se\ lleva\ un\ solo\ disco\ (el\ que\ queda)\ de\ la\ varilla\ origen\ a\ la\ destino\r\n\ Se\ traen\ los\ n-1\ discos\ de\ la\ varilla\ auxiliar\ a\ la\ destino.\r\n
+comment1.params=args
+comment1.target=void\ main(java.lang.String[])
+comment2.params=n\ origen\ auxiliar\ destino
+comment2.target=void\ Hanoi(int,\ int,\ int,\ int)
+numComments=3
