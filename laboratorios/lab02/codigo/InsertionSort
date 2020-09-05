@@ -1,0 +1,33 @@
+
+/**
+ * Write a description of class insertionsort here.
+ * 
+ * @author Mariana Quintero, Isabella Serna 
+ * @version 1
+ */
+public class insertionsort
+{
+   /**
+     * @param array is an arrangement of unordered numbers
+     * The insertionSort method is intended to sort the numbers
+     * of the array array by the insertion method:
+     * by nesting cyclic functions (while/for/...)
+     *
+     */
+    public static int[] insertionSort (int[] array){
+        int j = 0;
+        int temp = 0;
+        for(int i = 0; i < array.length; i++){
+            j = i - 1;
+            temp = array[i];
+            while(j >= 0 && array[j] > temp){
+                array[j+1] = array[j];
+                j = j - 1;
+            }
+            array[j+1] = temp;
+        }
+        return array;
+    }
+    
+   
+}
