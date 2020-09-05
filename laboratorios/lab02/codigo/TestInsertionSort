@@ -1,0 +1,35 @@
+
+/**
+ * Write a description of class TestInsertionSort here.
+ * 
+ * @author Mariana Quintero, Isabella Serna 
+ * @version 1
+ */
+public class TestInsertionSort
+{
+    public static boolean ejercicio3(){
+        int[] temp;
+        String a;
+        String temps = "";
+        
+        temp = insertionsort.insertionSort (new int[] {});
+        for(int i=0;i<temp.length;i++){
+            temps += temp[i]+" ";
+        }
+        a = temps;
+        
+        if(a.equals("") )
+            return true;
+        return false;
+    }
+    
+    public static void main(String[] args){
+        long inicialTime = System.currentTimeMillis();
+        if(ejercicio3())
+            System.out.println("Ejercicio Correcto");
+        else
+        System.out.println("Ejercicio Incorrecto");
+        long finalTime = System.currentTimeMillis();
+        System.out.println(finalTime-inicialTime);
+    }
+}
