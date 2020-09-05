@@ -1,0 +1,103 @@
+
+/**
+ * Write a description of class lab2 here.
+ * 
+ * @author Hugo Barnes 
+ * @version 1
+ */
+public class MergeSort
+{
+    public void sort(int arr[], int left, int right){
+        if(left < right){
+            //Find the midpoint of the vector.
+            int middle = (left + right) / 2;
+      
+            //Divide the first and second half (recursive call).
+            sort(arr, left, middle);
+            sort(arr, middle + 1, right);
+
+            //Join the halves.
+            merge(arr, left, middle, right);
+        }
+    }
+
+
+    public void merge(int arr[], int left, int middle, int right) {
+        //Find the size of the sub-vectors to join.
+        int n1 = middle - left + 1;
+        int n2 = right - middle;
+
+        //Time Vectors.
+        int leftArray[] = new int [n1];
+        int rightArray[] = new int [n2];
+    
+         //Copies the data to the temporary arrays.
+      for (int i=0; i < n1; i++) {
+        leftArray[i] = arr[left+i];
+      }
+      for (int j=0; j < n2; j++) {
+        rightArray[j] = arr[middle + j + 1];
+      }
+      /* Unites the temporal vectors. */
+    
+      //Initial indexes of the first and second sub-vector.
+      int i = 0, j = 0;
+    
+      //Initial index of the arr[] sub-vector.
+      int k = left;
+    
+      //Ordering.
+      while (i < n1 && j < n2) {
+        if (leftArray[i] <= rightArray[j]) {
+          arr[k] = leftArray[i];
+          i++;
+        } else {
+            arr[k] = rightArray[j];
+            j++;
+        }
+        k++;
+      }//End del while.
+    
+      /* If there are still items to be ordered */
+      //Copy the remaining items from leftArray[].
+      while (i < n1) {
+        arr[k] = leftArray[i];
+        i++;
+        k++;
+      }
+      //Copy the remaining elements of rightArray[].
+      while (j < n2) {
+        arr[k] = rightArray[j];
+        j++;
+        k++;
+      }
+    }
+    
+    public void printArray(int arr[]) {
+        int n = arr.length;
+        for (int i=0; i<n; ++i) {
+            System.out.println(arr[i] + " ");
+        }
+        System.out.println();
+    }
+    
+    public static void main(String[] args) {
+        long inicialTime = System.currentTimeMillis();
+        MergeSort mergeSort = new MergeSort();
+        int arr [] = {5,26,12,8,13};
+        int n = arr.length;
+
+        //System.out.println("Original Array:");
+        //for (int value : arr) {
+        //    System.out.print(value + " ");
+        //}
+
+        //System.out.println();
+
+        //System.out.println("Ordered Array:");
+        mergeSort.sort(arr,0,n-1);
+        //mergeSort.printArray(arr);
+        long finalTime = System.currentTimeMillis();
+        System.out.println(finalTime-inicialTime);
+    }
+}
