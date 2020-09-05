@@ -1,13 +1,10 @@
 
 /**
- * Write a description of class lab2 here.
  * Title: platzi/Curso Básico de Algoritmos
  * Author: Hugo Barnes
  * Date: 2019 
  * Code version: 1 
  * Availability: https://platzi.com/tutoriales/1469-algoritmos/4260-merge-sort-en-java/
- * @author Hugo Barnes 
- * @version 1
  */
 public class MergeSort
 {
