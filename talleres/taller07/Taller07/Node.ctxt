@@ -1,0 +1,6 @@
+#BlueJ class context
+comment0.target=Node
+comment0.text=\r\n\ \r\n\ \r\n\ @author\ Mauricio\ Toro\r\n\ @version\ 1\r\n
+comment1.params=data
+comment1.target=Node(int)
+numComments=2
