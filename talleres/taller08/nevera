@@ -1,3 +1,11 @@
+/**
+ * Esta clase se encarga de definir los atributos de una nevera.
+ * 
+ * @author Mariana Quintero, Isabella Pérez 
+ * @version 1
+ */
+
+
 public class Nevera{
 	private int codigo;
 	private String marca;
