@@ -1,3 +1,11 @@
+/**
+ * Esta clase se encarga de describir los atributos de una solicitud.
+ * 
+ * @author Mariana Quintero, Isabella Pérez
+ * @version 1
+ */
+
+
 public class Solicitud{
 	
 	private String entidad;
