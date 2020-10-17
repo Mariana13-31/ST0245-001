@@ -1,0 +1,28 @@
+public class impurezaGini
+{
+    
+    /**
+     * Gini calcula la impureza Gini en un arreglo de dos dimensiones
+     */
+    public static double Gini(String[][] Array){
+        
+        int i=0;
+        int exito=0;
+        while(i<Array.length){
+            if(Array[i][(Array[0].length)-1] == "1"){
+                exito++;
+            }
+            i++;
+        }
+        int noExito=Array.length-exito;
+        
+        double pExito = (exito/Array.length);
+        double pNoExito = (noExito/Array.length);
+        
+        double gini = 1 - (Math.pow(pExito,2) + Math.pow(pNoExito,2));
+
+        return gini;
+        
+    }
+
+}
