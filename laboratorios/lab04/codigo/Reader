@@ -30,7 +30,7 @@ public class Reader
      * @see splitString
      */
     public void leer (String dir) throws IOException{
-        try (BufferedReader br=new BufferedReader(new FileReader("C: \\ Users \\ isabe \\ OneDrive \\ Escritorio \\ 4abejas.txt"))){
+        try (BufferedReader br=new BufferedReader(new FileReader(dir))){
             String line;
             while ((line=br.readLine())!=null){
                 splitString(line);
