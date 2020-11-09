@@ -27,13 +27,14 @@ public class Algorithm {
 
             for (int i = 0; i < Vertices; i++) 
             { 
-                if (matriz[u][i] == 1 && colores[i] == -1) 
+                if (matriz[u][i] == 1 && colores[i] == colores[u] ) 
                 { 
+                    return false;
+                } 
+                else if (matriz[u][i] == 1 && colores[i] == -1) 
+          
                     colores[i] = 1-colores[u]; 
                     listaE.add(i); 
-                } 
-                else if (matriz[u][i] == 1 && colores[i] == colores[u]) 
-                    return false; 
             } 
         }
         return true;
