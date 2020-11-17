@@ -1,4 +1,3 @@
-
 import java.io.File;
 import java.util.Scanner;
 import java.io.FileNotFoundException;
@@ -22,6 +21,8 @@ public class Principal
         System.out.println("Por favor escoja entre las siguientes opciones:");
         System.out.println(LeerDatos + ". Leer datos");
         System.out.println(TerminarPrograma +". Terminar el programa");
+        System.out.println(TiempoEjecuccion +". Tiempo de ejecucion");
+
 
         in = new Scanner(System.in);
         int opcion = in.nextInt();
@@ -33,14 +34,16 @@ public class Principal
             LeerDatos();
         }else if(opcion == TerminarPrograma){
             System.out.println("El programa ha terminado. Gracias.");
-        }else{
+        }else if(opcion == LeerDatos){
             System.out.println("Opción inválida. Por favor intente de nuevo");
+        }else if(opcion == TiempoEjecucion){
+            
         }
 
     }
 
     public static void main(String [] args) {
-
+        
         Principal p = new Principal();
         int opcion = p.pedirOpcion();
         while (opcion != TerminarPrograma) {
@@ -61,5 +64,15 @@ public class Principal
             System.out.println("El archivo no existe " + e.getMessage());
         }
 
+    }
+    
+    public void TiempoEjeccucion(){
+        long TInicio, TFin, tiempo; 
+        TInicio = System.currentTimeMillis(); 
+        Test test=new Test("4_train_balanced_135000","2_test_balanced_25000");
+        TFin = System.currentTimeMillis();
+        tiempo = TFin - TInicio;
+        System.out.println("Tiempo de ejecución en milisegundos: " + tiempo);
+        
     }
 }
