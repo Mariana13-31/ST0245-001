@@ -1,0 +1,81 @@
+import java.io.File;
+import java.util.Scanner;
+import java.util.ArrayList;
+import java.util.Arrays;
+/**
+ * Write a description of class DATOS here.
+ * 
+ * @author (your name) 
+ * @version (a version number or a date)
+ */
+public class DATOS
+{
+     private static String [][] array;
+     
+     public void leer(String files){
+        String archivo;
+        archivo=files;
+        File file=new File(archivo);
+
+        try{
+            Scanner input =new Scanner(file);
+            String line;
+            int i=0;
+            int cont=0;
+            this.array=new String[cont][10];
+            //Array principal
+            String [][] Array=new String[cont][10];
+
+            while(input.hasNextLine()){
+                
+                for (int j = 1; j <= 1; j++){ // Descarta la primera linea
+                    line= input.nextLine();
+                }
+
+                line=input.nextLine();
+                String [] vector = line.split(";");
+
+                Array[i] = vector;
+                i++;
+                array = Array;
+            }
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+    }
+
+    /**
+     * El método getArray() permite obtener el arreglo de dos dimensiones creado en el método leer()
+     * @return String[][] arreglo de cadenas
+     * 
+     */
+    public String[][] getArray(){
+        return this.array;
+    }
+
+    public String[][] getArrayParametros(int limiteInferior, int limiteSuperior){
+        String[][] matriz= new String[limiteSuperior-limiteInferior][];
+        int cont=0;
+        for(int i= limiteInferior; i<limiteSuperior;i++){
+            matriz[cont]=this.array[i];
+            cont++;
+        }
+        return matriz;
+    }
+
+    /**
+     * El método imprimir permite mostrar el arreglo de dos dimensiones
+     * @param array arreglo a imprimir
+     */
+    public void imprimir(String[][] array){
+
+        for (int i = 0; i < array.length; i++) {
+            for (int j = 0; j < array[i].length; j++) {
+                System.out.print(array[i][j] + " ");
+            }
+            System.out.println();
+        }
+
+    }
+     
+}
