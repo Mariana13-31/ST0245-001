@@ -1,0 +1,46 @@
+/**
+ * Write a description of class Sheets here.
+ * 
+ * @author (your name) 
+ * @version (a version number or a date)
+ */
+public class Sheets
+{
+    private String[][] sheet;
+   private int prediction; 
+   
+   public int count(){
+       int prediction = 0, success = 0, nSuccess = 0;
+       
+       for(int i = 0; i < sheet.length; i++){
+           if(Integer.parseInt(this.sheet[i][sheet[0].length-1])==1){
+               success++;
+            }else{
+                nSuccess++;
+            }
+        }
+        
+       int finals = nSuccess + success;
+       
+       if(finals == nSuccess){
+            prediction = 0;
+        }else if(finals == success){
+            prediction = 1;
+        }
+       
+        String ySuccess ="Success:  "+(success/finals)*100+"%";
+        String noSuccess ="No success:  "+(nSuccess/finals)*100+"%";       
+        return  prediction;
+       
+    }
+   
+   public Sheets (String [][] sheet){
+       this.sheet = sheet;
+       this.prediction = this.count();
+    }
+    
+   public String[][] getSheet(){
+       return sheet;
+   }
+   
+}
