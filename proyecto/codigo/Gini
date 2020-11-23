@@ -1,0 +1,149 @@
+import java.util.HashSet;
+import java.util.*;
+import javafx.util.Pair;
+
+/**
+ * Write a description of class Gini here.
+ * 
+ * @author (your name) 
+ * @version (a version number or a date)
+ */
+public class Gini
+{
+    public static  Pair<Float, Pair<Integer, Integer>> bestCondition(String[][] array){
+        Pair<Float, Integer> firstPair;
+        float higherProfit;
+        float higherTotalProfit = 0;
+        int bestCondition = 0;
+        int column=-1;
+
+        for(int i = 0; i < array[0].length-1; i++){
+            String [][] arreglo = OrderMatriz.mergeSortAux(array,i); 
+            firstPair= bestConditionAux(arreglo,i);
+            higherProfit = firstPair.getKey(); 
+            if(higherProfit>higherTotalProfit){
+                higherTotalProfit = higherProfit;
+                bestCondition = firstPair.getValue();
+                column = i;
+            } 
+        }
+        Pair<Float, Pair<Integer, Integer>> secondPair= new Pair(higherTotalProfit, new Pair(bestCondition, column));
+        return secondPair;
+    }
+    
+    public static Pair<Float, Integer> bestConditionAux(String[][] arr, int psc) 
+    { 
+        String [] possibleValues = OrderArray.mergeSortAux(possibleValues(arr, psc));
+        float success=0;
+        float nSuccess=0;
+        int value=0;
+        int iterate=0;
+        float[][] array= new float[possibleValues.length][3];
+
+        for(int j=0; j<possibleValues.length; j++){ 
+            array[j][0]=Float.parseFloat(possibleValues[j]);
+            array[j][1]=0;
+            array[j][2]=0;
+        }
+
+
+        while(value<possibleValues.length && iterate<arr.length){ 
+
+            if(Float.parseFloat(arr[iterate][psc])==Float.parseFloat(possibleValues[value])){
+                if(Integer.parseInt(arr[iterate][arr[0].length-1])==1){
+                    success++;
+                    array[value][1]=success;
+                }
+                iterate++;
+                array[value][1]=success;
+                array[value][2]=iterate-success;
+
+            }else{
+                value++;
+            }
+
+        } 
+        float  successTotal = array[array.length-1][1];
+        float  withoutTotalSuccess = array[array.length-1][2];
+        float impurityT = Gini(successTotal,withoutTotalSuccess);
+        float higherTotalProfit = 0;
+        float bestValue = Float.parseFloat(possibleValues[0]);
+        for(int i=0; i<possibleValues.length;i++){
+            float greater;
+            float minors;
+            float GiniMinors = Gini(array[i][1],array[i][2]);
+            float successGreater = successTotal - array[i][1];
+            float noSuccessGreater = withoutTotalSuccess - array[i][2];
+            float GiniGreater = Gini(successGreater,noSuccessGreater);
+            minors = array[i][1]+array[i][2];
+            greater = successGreater + noSuccessGreater;
+            float weightedImpurity = ((greater * GiniGreater)+(minors * GiniMinors))/(greater + minors);
+            float gainInformation= impurityT-weightedImpurity;
+            if(gainInformation > higherTotalProfit){
+                higherTotalProfit = gainInformation;
+                bestValue = Float.parseFloat(possibleValues[i]);
+            }
+        }
+
+        Pair<Float,Integer> pair= new Pair(higherTotalProfit, (int)bestValue);
+        return pair;
+    } 
+    
+    public static float Gini(float success, float  nSuccess){
+        float prSucces=0;
+        float prNoSucces=0;
+        float Totals = success + nSuccess;
+
+        while(success!=0){
+            prSucces = (success/Totals);
+        }
+
+        while(nSuccess!=0){
+            prNoSucces=(nSuccess/Totals);
+        }
+
+        float impurity = (1-((prSucces*prSucces)+(prNoSucces*prNoSucces)));
+        return impurity;
+    }
+    
+    public static String[] possibleValues(String[][]array, int psc){
+        HashSet<String> value = new HashSet<String>(array.length);
+        for(int i=0; i<array.length; i++){
+            while(array[i][psc]!="" && array[i][psc]!=null){
+                value.add(array[i][psc]);
+            }
+        }
+        String[] arr= new String[value.size()];
+        return value.toArray(arr);
+    }
+    
+    public static Pair<String[][],String[][]> divData(String[][] array, int psc, int val){
+        String[][] orderArray= OrderMatriz.mergeSortAux(array,psc);
+        int minor = 0;
+        double value = (double)val;  
+        int iterator = 0;
+        while(Double.parseDouble(orderArray[iterator][psc])<= value && iterator<orderArray.length){
+            minor++;
+            iterator++;
+        }
+        int greater = orderArray.length - minor;
+        int LongerRow=0;
+        int LowerRow=0;
+        String[][] arrayLower = new String[minor][orderArray[0].length];
+        String[][] arrayLonger = new String[greater][orderArray[0].length];
+        for(int i=0; i< orderArray.length; i++){
+            if(Double.parseDouble(orderArray[i][psc])<=value){
+                arrayLower[LowerRow]=orderArray[i];
+                LowerRow++;
+            } else{
+                arrayLonger[LongerRow]=orderArray[i];
+                LongerRow++; 
+            }
+
+        }
+        Pair<String[][], String[][]> pareja= new Pair(arrayLower,arrayLonger);
+        return pareja;
+
+    }
+
+}
