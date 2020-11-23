@@ -1,0 +1,55 @@
+
+/**
+ * Write a description of class Orrght here.
+ * 
+ * @author (your name) 
+ * @version (a version number or a date)
+ */
+public class OrderArray
+{
+    public static void print(String Arr[]){
+        for(int i=0;i<Arr.length;i++){
+            System.out.print(Arr[i]+" ");
+        }
+    }
+    
+    private static String[] mergeSort(String Arr[],int lft, int rght){
+        String [] arr = new String[Arr.length];
+        if (rght > lft){
+            int middle = (rght + lft)/2;
+            mergeSort(Arr,lft, middle);
+            mergeSort(Arr, middle+1, rght);                                                                                
+            arr= Merge(Arr, lft, middle, rght);                                                                                 
+        }
+        return arr;
+    }
+    
+    private static String [] Merge(String Arr[],int lft, int middle, int rght){
+        int firstLft, secondLft, Glft;
+        String [] aux = new String[Arr.length];
+        for (firstLft=lft; firstLft<=rght; firstLft++){                                      
+            aux[firstLft]= Arr[firstLft];
+        }
+        firstLft=lft; secondLft=middle+1; Glft=lft;
+
+        while (firstLft<=middle && secondLft<=rght){                                   
+            if (Float.parseFloat(aux[firstLft])<=Float.parseFloat(aux[secondLft]))
+                Arr[Glft++]=aux[firstLft++];
+            else
+                Arr[Glft++]=aux[secondLft++];
+            }
+                
+        while (firstLft<=middle){         
+            Arr[Glft++]= aux[firstLft++]; 
+        }
+        return Arr;
+    }
+    
+    public static String [] mergeSortAux(String Arr[]){
+        while(Arr.length==0 ||Arr.length==1){
+            return Arr;
+        }
+        return mergeSort(Arr, 0, Arr.length-1);
+    }
+ 
+}
