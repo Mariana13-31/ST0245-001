@@ -1,0 +1,83 @@
+import javafx.util.Pair;
+
+/**
+ * Write a description of class Tree here.
+ * 
+ * @author (your name) 
+ * @version (a version number or a date)
+ */
+public class Tree extends Main {
+    private  DecisionNode root;
+    
+    public Tree(String [][] root){
+        Pair<Float, Pair<Integer, Integer>> bestCondition = Gini.bestCondition(root);
+        int bestValue = bestCondition.getValue().getKey();
+        int column = bestCondition.getValue().getValue();
+        Questions question = new Questions(column, bestValue);
+        Pair<String[][], String[][]> div = Gini.divData(root, column, bestValue);
+        DecisionNode rght =  createTree(div.getKey());
+        DecisionNode lft = createTree(div.getValue());
+        this.root = new DecisionNode(question, rght, lft, root);
+        this.createTree(root);
+
+    }
+
+    public DecisionNode createTree(String [][] data){
+
+        if(data == null || data.length==0){
+            DecisionNode newSheet = new DecisionNode(data);
+            return newSheet;
+        }else{
+            Pair<Float, Pair<Integer, Integer>> bestCondition = Gini.bestCondition(data);
+            float greaterInfoGain = bestCondition.getKey();
+            int bestValue = bestCondition.getValue().getKey();
+            int column = bestCondition.getValue().getValue();
+
+            while(greaterInfoGain == 0){
+                DecisionNode newSheet = new DecisionNode(data);
+                return newSheet;
+            }
+
+            Pair<String[][], String[][]> div = Gini.divData(data, column, bestValue);
+            if(div.getKey().length == 0){
+                DecisionNode newSheet = new DecisionNode(div.getValue());
+                return newSheet;
+            }
+            else if(div.getValue().length == 0){
+                DecisionNode newSheet = new DecisionNode(div.getKey());
+                return newSheet;
+            }else{
+               
+                DecisionNode rght = createTree(div.getKey()); 
+              
+                DecisionNode lft = createTree(div.getValue()); 
+
+                Questions question = new Questions(column, bestValue);
+                DecisionNode newDecisionNode = new DecisionNode(question, rght, lft, data);
+                return newDecisionNode;
+            }
+        }
+    }
+
+    public int predict(String [] row, DecisionNode nodes){
+        while(nodes != null){
+            if(nodes.getQuestions().matchs(row)){
+                return predict(row,nodes.getRght()); 
+            }else{
+                return predict(row,nodes.getLft()); 
+            }
+        }
+        
+        if(nodes.getSheet() != null && nodes != null){
+             return nodes.getSheet().count();
+        }else{
+            return 0;
+        }
+
+    }
+
+    public DecisionNode getRoot(){
+        return this.root;
+    }
+    
+}
