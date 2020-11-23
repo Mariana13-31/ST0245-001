@@ -1,0 +1,57 @@
+
+/**
+ * Write a description of class OrderMatriz here.
+ * 
+ * @author (your name) 
+ * @version (a version number or a date)
+ */
+public class OrderMatriz
+{
+   private static String [][] Merge(String Arr[][],int lft, int middle, int rght, int psc){
+        int firstLft, secondLft, Glft;
+        String [][] aux = new String[Arr.length][Arr[0].length];
+        for (firstLft=lft; firstLft<=rght; firstLft++){                                      
+            aux[firstLft]= Arr[firstLft];
+        }
+        firstLft=lft; secondLft=middle+1; Glft=lft;
+
+        while (firstLft<=middle && secondLft<=rght){                                   
+            if (Float.parseFloat(aux[firstLft][psc])<=Float.parseFloat(aux[secondLft][psc])){
+                Arr[Glft++]=aux[firstLft++];
+            }else{
+                Arr[Glft++]=aux[secondLft++];
+            }
+            }
+                
+        while (firstLft<=middle){         
+            Arr[Glft++]= aux[firstLft++]; 
+        }
+        return Arr;
+    }
+    
+    private static String[][] mergeSort(String Arr[][],int lft, int rght, int psc){
+        String [][] arr = new String[Arr.length][Arr[0].length];
+        while(rght > lft){
+            int middle = (rght + lft)/2;
+            mergeSort(Arr,lft, middle, psc);
+            mergeSort(Arr, middle+1, rght, psc);                                                                                
+            arr= Merge(Arr, lft, middle, rght, psc);                                                                                 
+        }
+        return arr;
+    }
+    
+    public static String [][] mergeSortAux(String Arr[][], int psc){
+        while(Arr.length==0 ||Arr.length==1){
+            return Arr;
+        }
+        return mergeSort(Arr, 0, Arr.length-1, psc);
+    }
+    
+    public static void print(String Arr[][]){
+        for(int j = 0; j < Arr.length; j++){
+            for(int i=0;i<Arr[0].length;i++){
+                System.out.print(Arr[j][i]+" ");
+            }
+        }
+    }
+}
