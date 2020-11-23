@@ -1,0 +1,22 @@
+**
+ * Write a description of class Main here.
+ * 
+ * @author (your name) 
+ * @version (a version number or a date)
+ */
+public class Main
+{
+    public static void main(String[] args){
+        long TInicio, TFin, tiempo; 
+        long beforeUsedMem=Runtime.getRuntime().totalMemory()-Runtime.getRuntime().freeMemory();
+        TInicio = System.currentTimeMillis(); 
+        Tests test=new Tests("4_test_balanced_135000","2_test_balanced_25000");
+        TFin = System.currentTimeMillis();
+        tiempo = TFin - TInicio;
+        System.out.println("execution time: " + tiempo);
+        long afterUsedMem=Runtime.getRuntime().totalMemory()-Runtime.getRuntime().freeMemory();
+        long actualMemUsed=afterUsedMem-beforeUsedMem;
+        System.out.println("Memoria Usada: " + actualMemUsed);
+
+    }
+}
