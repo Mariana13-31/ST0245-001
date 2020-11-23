@@ -1,0 +1,51 @@
+
+/**
+ * Write a description of class DecisionNode here.
+ * 
+ * @author (your name) 
+ * @version (a version number or a date)
+ */
+public class DecisionNode
+{
+    private Questions question;
+    private String[][] data;
+    private Sheets sheet;
+    private DecisionNode lft;
+    private DecisionNode rght;
+    
+    public Questions  getQuestions(){
+        return this.question;
+    }
+
+    public DecisionNode getLft(){
+        return this.lft;
+    }
+
+    public DecisionNode getRght(){
+        return this.rght;
+    }
+
+    public String[][]  getData(){
+        return this.data;
+    }
+
+    public Sheets getSheet(){
+        return this.sheet;
+    }
+    
+    public DecisionNode (Questions question, DecisionNode lft, DecisionNode rght, String[][] data){
+        this.question = question;
+        this.lft = lft;
+        this.rght = rght;
+        this.data = data;
+        this.sheet = null;
+    }
+    
+    public DecisionNode (String [][] sheet){
+        this.sheet = new Sheets(sheet);
+        this.question=null;
+        this.lft=null;
+        this.rght=null;
+        this.data=null;
+    }
+}
