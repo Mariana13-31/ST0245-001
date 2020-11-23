@@ -1,0 +1,34 @@
+
+/**
+ * Write a description of class Questions here.
+ * 
+ * @author (your name) 
+ * @version (a version number or a date)
+ */
+public class Questions
+{
+    private int column;
+    private int bestValue;
+
+    public Questions(int column, int bestValue){
+                this.bestValue = bestValue;
+                this.column = column;
+    }
+
+    public boolean matchs(String [] row){
+        int value=(int)Float.parseFloat(row[this.column]);
+        if(value<=this.bestValue){
+            return true;
+        }else{
+            return false;
+        }
+    }
+    
+    public int getBestValue(){
+        return this.bestValue;
+    }
+    
+    public int getColumn(){
+        return this.column;
+    }
+}
